@@ -4,7 +4,7 @@ import Form from "./components/form/Form";
 export default function App() {
   return (
     <>
-      <Counter />
+      <Counter name="Hou" initialCount={2} />
       <Form />
     </>
   );
