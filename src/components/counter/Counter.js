@@ -12,20 +12,20 @@ export default function Counter({
   const [count, setCount] = useState(initialCount);
 
   // USESTATE: Using multiple state variables. React recommends splitting state into multiple state variables based on which values tend to change together.
-  const [person, setPerson] = useState(initialPerson);
+  const [person, setPerson] = useState({ ...initialPerson });
 
   // RULES OF HOOKS: Only call hooks at the top level; don’t call Hooks inside loops, conditions, or nested functions. Only call hooks from React functions. Create React App includes ESLint Plugin that helps enforce these rules automatically
 
   function handleIncrement() {
     if (count < 20) {
       // count = count + 1; // do not mutate state directly
-      setCount(count + 1);
+      setCount((previousCount) => previousCount + 1);
     }
   }
 
   function handleDecrement() {
     if (count > 0) {
-      setCount(count - 1);
+      setCount((previousCount) => previousCount - 1);
     }
   }
 
@@ -37,7 +37,7 @@ export default function Counter({
     setPerson(
       person.name === initialPerson.name
         ? { name: "Jane", location: "SF" }
-        : initialPerson
+        : { ...initialPerson }
     );
   }
 
