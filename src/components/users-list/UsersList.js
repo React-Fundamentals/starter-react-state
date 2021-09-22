@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import styles from "./UsersList.module.css";
 
 export default function UsersList() {
   const [users, setUsers] = useState([]);
@@ -37,7 +38,7 @@ export default function UsersList() {
   );
 
   return (
-    <section>
+    <section className={styles.container}>
       <h2>Welcome to UsersList</h2>
       {content}
     </section>
