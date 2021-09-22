@@ -3,7 +3,7 @@ import styles from "./Counter.module.css";
 
 export default function Counter({
   initialPerson = { name: "John", location: "NYC" },
-  initialCount = 55,
+  initialCount = 2,
 }) {
   const [count, setCount] = useState(initialCount);
 
@@ -13,13 +13,17 @@ export default function Counter({
   const [person, setPerson] = useState({ ...initialPerson });
 
   function handleIncrement() {
-    setCount((previousCount) => previousCount + 1);
-    // setCount((previousCount) => previousCount + 1);
-    // setCount((previousCount) => previousCount + 1);
+    if (count < 20) {
+      setCount((previousCount) => previousCount + 1);
+      // setCount((previousCount) => previousCount + 1);
+      // setCount((previousCount) => previousCount + 1);
+    }
   }
 
   function handleDecrement() {
-    setCount((previousCount) => previousCount - 1);
+    if (count > 5) {
+      setCount((previousCount) => previousCount - 1);
+    }
   }
 
   function handleToggle() {
@@ -30,10 +34,14 @@ export default function Counter({
     );
   }
 
+  // Rendering logic
+  console.log("rendering");
+  const counterClass = count > 10 ? styles.red : null;
+
   return (
     <section className={styles.container}>
       <h1>{person.name}'s Counter App</h1>
-      <h2>Your current count: {count}</h2>
+      <h2 className={counterClass}>Your current count: {count}</h2>
       <h3>Your current Location: {person.location}</h3>
 
       <p>
