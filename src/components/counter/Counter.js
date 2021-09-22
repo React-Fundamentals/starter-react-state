@@ -21,9 +21,11 @@ export default function Counter({
   }
 
   function handleDecrement() {
-    if (count > 5) {
-      setCount((previousCount) => previousCount - 1);
-    }
+    setCount((previousCount) => {
+      if (previousCount > 5) {
+        return previousCount - 1;
+      }
+    });
   }
 
   function handleToggle() {
