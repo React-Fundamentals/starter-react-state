@@ -30,41 +30,40 @@ export default function Form({
       <h2>
         Contact Form from {initialFormData.firstName} {initialFormData.lastName}
       </h2>
-      {
-        <form>
-          <ul>
-            <li>
-              <label htmlFor="firstName">First Name:</label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-              />
-            </li>
-            <li>
-              <label htmlFor="lastName">Last Name:</label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-              />
-            </li>
-            <li>
-              <label htmlFor="email">Email:</label>
-              <input type="email" id="email" name="email" />
-            </li>
-            <li>
-              <label htmlFor="message">Message:</label>
-              <input type="text" id="message" name="message" />
-            </li>
-            <button>Send contact form</button>
-          </ul>
-        </form>
-      }
+
+      <form>
+        <ul>
+          <li>
+            <label htmlFor="firstName">First Name:</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+            />
+          </li>
+          <li>
+            <label htmlFor="lastName">Last Name:</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+            />
+          </li>
+          <li>
+            <label htmlFor="email">Email:</label>
+            <input type="email" id="email" name="email" />
+          </li>
+          <li>
+            <label htmlFor="message">Message:</label>
+            <input type="text" id="message" name="message" />
+          </li>
+          <button>Send contact form</button>
+        </ul>
+      </form>
     </section>
   );
 }
