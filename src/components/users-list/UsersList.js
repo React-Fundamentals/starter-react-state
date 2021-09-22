@@ -3,6 +3,7 @@ import styles from "./UsersList.module.css";
 
 export default function UsersList() {
   const [users, setUsers] = useState([]);
+  const [error, setError] = useState(false);
 
   // The Effect Hook lets you perform side effects in function components (e.g., data fetching/network requests, setting up a subscription, starting a timer, logging, manual DOM updates etc.). It tells React that your component needs to do something after render. React will remember the function you passed (or the “effect”), and call it later after performing the DOM updates.
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function UsersList() {
         // You can access the state updater function from inside the effect
         setUsers(data);
       } catch (error) {
-        console.log(error);
+        setError(true);
       }
     }
 
@@ -36,10 +37,16 @@ export default function UsersList() {
     return <li key={`${user.name}-${index}`}>{user.name}</li>;
   });
 
+  const content = error ? (
+    <p>Sorry, we're having trouble loading the users.</p>
+  ) : (
+    <ul>{userListItems}</ul>
+  );
+
   return (
     <section className={styles.container}>
       <h2>Welcome to the directory of users:</h2>
-      <ul>{userListItems}</ul>
+      {content}
     </section>
   );
 }
