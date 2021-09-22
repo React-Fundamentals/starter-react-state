@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./Form.module.css";
 export default function Form({
   initialFormData = {
@@ -7,6 +8,23 @@ export default function Form({
     message: "",
   },
 }) {
+  const [formData, setFormData] = useState({});
+
+  // function handleFirstNameChange(event) {
+  //   setFormData((data) => ({ ...data, firstName: event.target.value }));
+  // }
+
+  // function handleLastNameChange(event) {
+  //   setFormData((data) => ({ ...data, lastName: event.target.value }));
+  // }
+
+  function handleChange({ target: { name, value } }) {
+    setFormData((data) => ({
+      ...data,
+      [name]: value,
+    }));
+  }
+
   return (
     <section className={styles.container}>
       <h2>
@@ -17,11 +35,23 @@ export default function Form({
           <ul>
             <li>
               <label htmlFor="firstName">First Name:</label>
-              <input type="text" id="firstName" name="firstName" />
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
             </li>
             <li>
               <label htmlFor="lastName">Last Name:</label>
-              <input type="text" id="lastName" name="lastName" />
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
             </li>
             <li>
               <label htmlFor="email">Email:</label>
