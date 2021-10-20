@@ -18,9 +18,9 @@ export default function Counter({ initialCount = 6 }) {
   }
 
   function handleDecrement() {
-    setCount((previousCount) => {
-      return previousCount > 0 ? previousCount - 1 : previousCount;
-    });
+    setCount((previousCount) =>
+      previousCount > 0 ? previousCount - 1 : previousCount
+    );
   }
 
   function handleToggle() {
