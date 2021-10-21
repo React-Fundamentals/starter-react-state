@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import FormError from "./FormError";
 export default function Form({
   // firstName = "",
   // lastName = "",
@@ -13,6 +13,7 @@ export default function Form({
   },
 }) {
   const [formData, setFormData] = useState({ ...initialFormData });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // function handleFirstNameChange(event) {
   //   setFormData((data) => {
@@ -41,10 +42,22 @@ export default function Form({
     });
   }
 
-  return (
-    <section>
-      <h2>Contact Form from Hou Chia</h2>
-      <form>
+  function handleSubmit(event) {
+    event.preventDefault();
+    setIsSubmitted(true);
+    // fetch call here to send data
+  }
+
+  function handleReset() {
+    setFormData({ ...initialFormData });
+    setIsSubmitted(false);
+  }
+
+  // Rendering logic
+  let content;
+  if (!isSubmitted) {
+    content = (
+      <form onSubmit={handleSubmit}>
         <ul>
           <li>
             <label htmlFor="firstName">First Name:</label>
@@ -68,15 +81,51 @@ export default function Form({
           </li>
           <li>
             <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
           </li>
           <li>
             <label htmlFor="message">Message:</label>
-            <input type="text" id="message" name="message" />
+            <input
+              type="text"
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+            />
           </li>
           <button>Send contact form</button>
         </ul>
       </form>
+    );
+  } else if (isSubmitted && formData.message.length === 0) {
+    content = (
+      <>
+        <FormError firstName={formData.firstName} />
+        <button onClick={handleReset}>Reset Form</button>
+      </>
+    );
+  } else {
+    content = (
+      <>
+        <p>
+          Thank you, {formData.firstName}, for submitting the form with the
+          following message: {formData.message}
+        </p>
+        <button onClick={handleReset}>Reset Form</button>
+      </>
+    );
+  }
+
+  return (
+    <section>
+      <h2>Contact Form from Hou Chia</h2>
+      {content}
     </section>
   );
 }
