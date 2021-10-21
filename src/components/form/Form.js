@@ -14,11 +14,29 @@ export default function Form({
 }) {
   const [formData, setFormData] = useState({ ...initialFormData });
 
-  function handleFirstNameChange(event) {
+  // function handleFirstNameChange(event) {
+  //   setFormData((data) => {
+  //     return {
+  //       ...data,
+  //       firstName: event.target.value,
+  //     };
+  //   });
+  // }
+
+  // function handleLastNameChange(event) {
+  //   setFormData((data) => {
+  //     return {
+  //       ...data,
+  //       lastName: event.target.value,
+  //     };
+  //   });
+  // }
+
+  function handleChange(event) {
     setFormData((data) => {
       return {
         ...data,
-        firstName: event.target.value,
+        [event.target.name]: event.target.value,
       };
     });
   }
@@ -35,12 +53,18 @@ export default function Form({
               id="firstName"
               name="firstName"
               value={formData.firstName}
-              onChange={handleFirstNameChange}
+              onChange={handleChange}
             />
           </li>
           <li>
             <label htmlFor="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" />
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+            />
           </li>
           <li>
             <label htmlFor="email">Email:</label>
